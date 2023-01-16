@@ -23,7 +23,7 @@ consumer1.on("ready", function () {
     consumer1.consume()
     console.log("received message 1....................")
 }).on('data', function (data) {
-    console.log(data.partition, " 1");
+    console.log("Partition ", data.partition);
     console.log('Received message from Consumer 1:', data.value.toString());
     consumer1.commit(data);
 });
@@ -34,7 +34,7 @@ consumer2.on("ready", function () {
     consumer2.assign([{ topic: "ritul-topic", partition: 1 }]);
     consumer2.consume();
 }).on('data', function (data) {
-    console.log(data.partition, " 2");
+    console.log("Partition ", data.partition);
     console.log('Received message from Consumer 2: ' + data.value);
     consumer2.commit(data);
 });
@@ -45,7 +45,7 @@ consumer3.on("ready", function () {
     consumer3.assign([{ topic: "ritul-topic", partition: 2 }]);
     consumer3.consume();
 }).on('data', function (data) {
-    console.log(data.partition, " 3");
+    console.log("Partition ", data.partition);
     console.log('Received message from Consumer 3: ' + data.value);
     consumer3.commit(data);
 });

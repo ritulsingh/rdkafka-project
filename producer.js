@@ -10,9 +10,12 @@ producer.on('delivery-report', function (err, report) {
 });
 producer.on('ready', function () {
     console.log('Producer is ready');
-    for (let i = 0; i < 100; i++) {
-        producer.produce("ritul-topic", null, Buffer.from(`message ${i}`));
+    for (let i = 0; i < 3; i++) {
+        producer.produce("ritul-topic", i, Buffer.from(`message ${i}`));
     }
+    // producer.produce("ritul-topic", 0, Buffer.from(`message 0`));
+    // producer.produce("ritul-topic", 1, Buffer.from(`message 1`));
+    // producer.produce("ritul-topic", 2, Buffer.from(`message 2`));
 });
 producer.on('event.error', (err) => {
     console.log('Event error', err);
