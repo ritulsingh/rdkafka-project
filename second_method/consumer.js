@@ -1,5 +1,5 @@
 const kafka = require('node-rdkafka');
-
+let count = 0;
 // Create the first consumer
 const consumer1 = new kafka.KafkaConsumer({
     "group.id": "group1",
@@ -13,8 +13,10 @@ consumer1.on("ready", () => {
     consumer1.consume();
 }).on("data", (message) => {
     // Consume the message
+    count++;
     console.log(`Consumer1: ${message.value.toString()}`);
     consumer1.commit(message);
+    console.log(count);
 });
 
 // Create the second consumer
@@ -31,8 +33,10 @@ consumer2.on("ready", () => {
     consumer2.consume();
 }).on("data", (message) => {
     // Consume the message
+    count++;
     console.log(`Consumer2: ${message.value.toString()}`);
     consumer2.commit(message);
+    console.log(count);
 
 });
 
@@ -50,8 +54,10 @@ consumer3.on("ready", () => {
     consumer3.consume();
 }).on("data", (message) => {
     // Consume the message
+    count++;
     console.log(`Consumer3: ${message.value.toString()}`);
     consumer3.commit(message);
+    console.log(count);
 });
 
 // Connect the consumer to the Kafka broker

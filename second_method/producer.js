@@ -10,9 +10,9 @@ const producer = new kafka.Producer({
 // Wait for the ready event before producing messages
 producer.on("ready", () => {
   console.log("Producer ready");
-  for (let i = 0; i < 1000; i++) {
+  for (let i = 0; i < 10000; i++) {
     // Produce messages with a key
-    producer.produce("second-topic", -1, Buffer.from(`message ${i}`), `${Date.now() % 3}`);
+    producer.produce("second-topic", -1, Buffer.from(`message ${i}`));
   }
 });
 
